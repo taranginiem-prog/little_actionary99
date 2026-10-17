@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Actionary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact">
+<div id="site-header"></div>
+<main>
+<div class="phero" style="--c:#c8f3e8"><div class="wrap">
+ <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
+ <h1>Say hello!</h1>
+ <p>Questions about an order, a figure or a future drop? We'd love to hear from you.</p>
+</div></div>
+
+<section><div class="wrap cgrid">
+ <form class="card form" id="cf">
+  <h2>Send us a message</h2>
+  <div class="two-f">
+   <label>Your name<input name="name" autocomplete="name" required></label>
+   <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  </div>
+  <label>Topic<select name="topic"><option>Order question</option><option>Product question</option><option>Returns</option><option>Just saying hi</option></select></label>
+  <label>Message<textarea name="msg" required></textarea></label>
+  <button class="btn" type="submit">Send message</button>
+  <p id="fmsg" role="status"></p>
+ </form>
+ <div class="info-cards">
+  <div class="card ic2" style="--c:var(--pink-soft)"><i>💌</i><div><b>Email</b>support@actionary.example</div></div>
+  <div class="card ic2" style="--c:var(--yellow)"><i>⏰</i><div><b>Hours</b>Mon–Fri, 10am–6pm</div></div>
+  <div class="card ic2" style="--c:var(--lilac-soft)"><i>📦</i><div><b>Replies</b>Within one business day</div></div>
+ </div>
+</div></section>
+
+<section id="faq" style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">Quick answers</span><h2>Frequently asked questions</h2></div>
+  <div class="faq">
+   <details open><summary>How long does shipping take?</summary><p>Tracked delivery takes 3–5 days. Orders over $60 ship free.</p></details>
+   <details><summary>What if my figure arrives damaged?</summary><p>Every figure is mint-in-box guaranteed. Contact us and we'll send a replacement.</p></details>
+   <details><summary>Can I return a figure?</summary><p>Yes. Unopened figures can be returned within 30 days.</p></details>
+   <details><summary>How big are the figures?</summary><p>Each figure is about 5 inches tall with poseable arms and a display stand.</p></details>
+   <details><summary>Are the characters original?</summary><p>Yes. All Actionary figures are original cute designs made in-house.</p></details>
+  </div>
+ </div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+A.$("#cf").addEventListener("submit",e=>{e.preventDefault();A.$("#fmsg").textContent="Thanks! Your message is on its way. (Demo form — nothing was sent.) 💌";e.target.reset()});
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About — Actionary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+<main>
+<div class="phero" style="--c:var(--lilac-soft)"><div class="wrap">
+ <div class="crumbs"><a href="index.html">Home</a> / About</div>
+ <h1>Hi, we're Actionary!</h1>
+ <p>A tiny studio making cute collectible girl figures, one sparkle at a time.</p>
+</div></div>
+
+<section><div class="wrap two">
+ <div class="collage" aria-hidden="true"><div class="blob"></div></div>
+ <div>
+  <span class="sticker">Our story</span>
+  <h2>Born from a doodle notebook</h2>
+  <p>Actionary started with a notebook full of doodles: bunny girls, star fairies and tiny witches with big eyes. We wanted to turn them into figures you could hold, pose and display.</p>
+  <p>Today every character is an original design with a sweet face, a pastel outfit and poseable arms. No licensed characters, just our own cute world that keeps growing.</p>
+  <p style="margin-top:24px"><a class="btn" href="shop.html">Meet the figures</a></p>
+ </div>
+</div></section>
+
+<div class="stats"><div class="wrap">
+ <div><b>8</b>original characters</div><div><b>3</b>sparkly series</div><div><b>5"</b>poseable figures</div><div><b>30</b>day returns</div>
+</div></div>
+
+<section>
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">What we care about</span><h2>Our promises</h2></div>
+  <div class="values">
+   <div class="card val"><i style="--c:var(--pink-soft)">🎨</i><h3>Original designs</h3><p>Every figure is drawn in-house. Nothing borrowed, nothing copied.</p></div>
+   <div class="card val"><i style="--c:var(--mint)">🧸</i><h3>Quality you can feel</h3><p>Clean paint, smooth joints and sturdy stands that keep poses in place.</p></div>
+   <div class="card val"><i style="--c:var(--yellow)">💌</i><h3>Kind to collectors</h3><p>Mint-in-box guarantee, 30-day returns and real humans answering emails.</p></div>
+  </div>
+ </div>
+</section>
+
+<section style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">The characters</span><h2>Meet the crew</h2><p>The figures who run our little shelf.</p></div>
+  <div class="team" id="team"></div>
+ </div>
+</section>
+
+<section style="padding-top:0"><div class="wrap"><div class="band">
+ <div><h2>Want to join the fun?</h2><p>Say hello, ask a question or tell us which character you want next.</p></div>
+ <div class="cta"><a class="btn yellow" href="contact.html">Contact us</a><a class="btn white" href="shop.html">Shop now</a></div>
+</div></div></section>
+</main>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+const {P,fig,$}=A;
+$(".collage").insertAdjacentHTML("beforeend",[P[0],P[1],P[4]].map(p=>`<div class="f">${fig(p)}</div>`).join(""));
+const roles={1:"Chief Napper",2:"Sparkle Officer",5:"Night Shift Lead",7:"Head of Fun"};
+$("#team").innerHTML=[1,2,5,7].map(i=>{const p=P.find(x=>x.id===i);return `<div class="card tm"><div class="art" style="--c:${p.c}">${fig(p)}</div><div class="in"><h3>${p.n}</h3><span>${roles[i]}</span></div></div>`}).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Figure — Actionary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="site-header"></div>
+<main>
+<section style="padding-block:40px 20px"><div class="wrap">
+ <div class="crumbs"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="bc"></span></div>
+ <div class="pview" id="pv"></div>
+</div></section>
+<section style="padding-top:40px"><div class="wrap">
+ <div class="sec-head"><span class="sticker">Collect more</span><h2>You might also love</h2></div>
+ <div class="grid" id="rel"></div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+const {P,fig,fmt,card,$,add}=A;
+const id=+new URLSearchParams(location.search).get("id");
+const p=P.find(x=>x.id===id)||P[0];
+document.title=p.n+" — Actionary";
+$("#bc").textContent=p.n;
+$("#pv").innerHTML=`
+<div class="card big" style="--c:${p.c}">${fig(p)}</div>
+<div class="pinfo">
+ <span class="sticker">${p.s} series</span>
+ <h1>${p.n}</h1>
+ <div class="price">${fmt(p.p)}</div>
+ <p class="desc">${p.d}</p>
+ <ul class="checks"><li>5-inch collectible figure</li><li>Poseable arms</li><li>Includes display stand and collector card</li><li>Original design, mint-in-box</li></ul>
+ <div class="buy">
+  <div class="stepper"><button id="m" aria-label="Decrease quantity">−</button><output id="q" aria-live="polite">1</output><button id="pl" aria-label="Increase quantity">+</button></div>
+  <button class="btn" id="addq">Add to cart</button>
+ </div>
+ <details open><summary>Shipping</summary><p>Free tracked shipping on orders over $60. Delivery in 3–5 days.</p></details>
+ <details><summary>Returns</summary><p>30-day returns on unopened figures. Damaged on arrival? We replace it.</p></details>
+</div>`;
+let n=1;
+$("#m").onclick=()=>{n=Math.max(1,n-1);$("#q").textContent=n};
+$("#pl").onclick=()=>{n=Math.min(9,n+1);$("#q").textContent=n};
+$("#addq").onclick=()=>{add(p.id,n);n=1;$("#q").textContent=1};
+const rel=P.filter(x=>x.id!==p.id).sort((a,b)=>(b.s===p.s)-(a.s===p.s)).slice(0,4);
+$("#rel").innerHTML=rel.map(card).join("");
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shop — Actionary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="shop">
+<div id="site-header"></div>
+<main>
+<div class="phero" style="--c:var(--pink-soft)"><div class="wrap">
+ <div class="crumbs"><a href="index.html">Home</a> / Shop</div>
+ <h1 id="title">Shop figures</h1>
+ <p id="sub">Eight original characters, three series. Find your favourite and collect them all.</p>
+</div></div>
+<section style="padding-top:44px"><div class="wrap">
+ <div class="toolbar">
+  <div class="chips" id="chips" role="group" aria-label="Filter by series"></div>
+  <label class="sel">Sort <select id="sort"><option value="feat">Featured</option><option value="lo">Price: low to high</option><option value="hi">Price: high to low</option><option value="az">Name A–Z</option></select></label>
+ </div>
+ <p class="count" id="count-l" role="status"></p>
+ <div class="grid" id="grid"></div>
+</div></section>
+</main>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+const {P,SERIES,card,$}=A;
+const cats=["All",...Object.keys(SERIES)];
+const q=new URLSearchParams(location.search).get("s");
+let cat=cats.includes(q)?q:"All",sort="feat";
+function draw(){
+ $("#chips").innerHTML=cats.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+ let l=P.filter(p=>cat==="All"||p.s===cat);
+ if(sort==="lo")l.sort((a,b)=>a.p-b.p);if(sort==="hi")l.sort((a,b)=>b.p-a.p);if(sort==="az")l.sort((a,b)=>a.n.localeCompare(b.n));
+ $("#grid").innerHTML=l.map(card).join("");
+ $("#count-l").textContent=`Showing ${l.length} figure${l.length===1?"":"s"}`;
+ $("#title").textContent=cat==="All"?"Shop figures":cat+" series";
+ $("#sub").textContent=cat==="All"?"Eight original characters, three series. Find your favourite and collect them all.":SERIES[cat].t;
+}
+$("#chips").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){cat=b.dataset.c;draw()}});
+$("#sort").onchange=e=>{sort=e.target.value;draw()};
+draw();
+</script>
+</body>
+</html>

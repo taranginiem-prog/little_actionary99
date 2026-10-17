@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Actionary — Cute collectible girl figures</title>
+<meta name="description" content="Adorable collectible girl figures with sweet faces, pastel outfits and poseable arms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+<div id="site-header"></div>
+<main>
+<div class="hero">
+ <span class="deco" style="top:12%;left:46%" id="d1"></span><span class="deco" style="bottom:10%;left:4%;animation-delay:-2s" id="d2"></span><span class="deco" style="top:8%;right:6%;animation-delay:-3s" id="d3"></span>
+ <div class="wrap">
+  <div>
+   <span class="sticker">New sparkle drop is here!</span>
+   <h1>Tiny figures, <em>big sparkle.</em></h1>
+   <p class="lead">Adorable collectible girl figures with sweet faces, soft pastel outfits and poseable arms. Free shipping on orders over $60.</p>
+   <div class="cta"><a class="btn" href="shop.html">Shop cute figures</a><a class="btn white" href="about.html">Our story</a></div>
+  </div>
+  <div class="stage" id="stage" aria-hidden="true"><div class="blob"></div></div>
+ </div>
+</div>
+<div class="marquee" aria-hidden="true"><div id="mq"></div></div>
+
+<section>
+ <div class="wrap perks">
+  <div class="card perk" style="--c:var(--mint)"><i>🚚</i><div><h3>Free shipping over $60</h3><p>Tracked delivery in 3–5 days.</p></div></div>
+  <div class="card perk" style="--c:var(--yellow)"><i>🛡️</i><div><h3>Mint-in-box guarantee</h3><p>Damaged on arrival? We replace it.</p></div></div>
+  <div class="card perk" style="--c:var(--pink-soft)"><i>↩️</i><div><h3>30-day returns</h3><p>Unopened figures, no questions asked.</p></div></div>
+ </div>
+</section>
+
+<section style="padding-top:20px">
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">Fan favourites</span><h2>Meet the squad</h2><p>A few of our most-loved figures. Each one is 5 inches tall with poseable arms.</p></div>
+  <div class="grid" id="feat"></div>
+  <p style="text-align:center;margin-top:36px"><a class="btn yellow" href="shop.html">See all figures →</a></p>
+ </div>
+</section>
+
+<div class="scallop up" style="--c:var(--lilac-soft)"></div>
+<section style="background:var(--lilac-soft);padding-block:56px">
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">Pick your world</span><h2>Choose a series</h2></div>
+  <div class="series" id="series"></div>
+ </div>
+</section>
+<div class="scallop" style="--c:var(--lilac-soft);transform:scaleY(-1)"></div>
+
+<section>
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">How it works</span><h2>From doodle to your doorstep</h2></div>
+  <div class="steps">
+   <div class="card step"><h3>Sketch</h3><p>Every figure starts as a doodle in our design notebook.</p></div>
+   <div class="card step"><h3>Sculpt</h3><p>Soft curves and sweet faces are shaped into the final mould.</p></div>
+   <div class="card step"><h3>Paint</h3><p>Pastel colours are hand-checked so every smile matches.</p></div>
+   <div class="card step"><h3>Pack</h3><p>Boxed safely and shipped to you with a collector card.</p></div>
+  </div>
+ </div>
+</section>
+
+<section style="padding-top:0">
+ <div class="wrap">
+  <div class="sec-head"><span class="sticker">Happy collectors</span><h2>What fans are saying</h2><p>Sample reviews for this demo store.</p></div>
+  <div class="reviews">
+   <div class="card rv"><div class="stars">★★★★★</div><p>Bunny Belle is even cuter in person. The pastel paint is so clean and her ears are adorable.</p><b>— Aanya, collector</b></div>
+   <div class="card rv"><div class="stars">★★★★★</div><p>Packaging was perfect and the arms pose easily without feeling loose. Already ordered another!</p><b>— Meera, gift buyer</b></div>
+   <div class="card rv"><div class="stars">★★★★★</div><p>My Moon Witch Mia looks stunning on my desk. Totally worth the limited edition price.</p><b>— Riya, shelf stylist</b></div>
+  </div>
+ </div>
+</section>
+
+<section style="padding-top:0">
+ <div class="wrap"><div class="band">
+  <span class="deco" style="top:10px;right:20px" id="d4"></span>
+  <div><h2>Get first access to new sparkle drops</h2><p>Collectors club members get early access, restock alerts and 10% off their first order.</p></div>
+  <div><form class="nl" style="display:flex;gap:12px;flex-wrap:wrap" onsubmit="return false"><input type="email" placeholder="Your email" aria-label="Email address" required><button class="btn yellow" type="submit">Join the club</button></form><p class="nlmsg" id="nl" role="status"></p></div>
+ </div></div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script src="app.js"></script>
+<script>
+const {P,SERIES,fig,card,star,$}=A;
+$("#stage").insertAdjacentHTML("beforeend",[P[0],P[2],P[1]].map(p=>`<div class="f">${fig(p)}</div>`).join(""));
+$("#feat").innerHTML=[P[0],P[1],P[4],P[3]].map(card).join("");
+$("#series").innerHTML=Object.entries(SERIES).map(([k,v])=>`<a class="card sc" style="--c:${v.c}" href="shop.html?s=${k}"><span class="ic">${v.ic}</span><h3>${k} series</h3><p>${v.t}</p><span class="go">Browse ${k} →</span></a>`).join("");
+const words=["Tiny figures","Big sparkle","Poseable arms","Pastel outfits","Free shipping over $60","Collect them all"];
+const row=words.map(w=>`<span>★ ${w}</span>`).join("");$("#mq").innerHTML=row+row;
+$("#d1").innerHTML=star("#ffd84a",44);$("#d2").innerHTML=star("#b79cff",36);$("#d3").innerHTML=star("#fff",50);$("#d4").innerHTML=star("#ffd84a",40);
+</script>
+</body>
+</html>
